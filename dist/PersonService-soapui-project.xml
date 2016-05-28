@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="bd22008e-2451-4179-ab73-2e76fce617e8" activeEnvironment="Default" name="PersonService" resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="8fc74afa-d8ce-43d7-9a98-6666fb278c0f" wsaVersion="NONE" name="PersonServiceSoapBinding" type="wsdl" bindingName="{http://soap.tallercamel.antel.com.uy/}PersonServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8989/soap?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8989/soap?wsdl"><con:part><con:url>http://localhost:8989/soap?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PersonService" targetNamespace="http://soap.tallercamel.antel.com.uy/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.tallercamel.antel.com.uy/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://soap.tallercamel.antel.com.uy/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="deletePerson" type="tns:deletePerson"/>
+      <xs:element name="deletePersonResponse" type="tns:deletePersonResponse"/>
+      <xs:element name="getPerson" type="tns:getPerson"/>
+      <xs:element name="getPersonResponse" type="tns:getPersonResponse"/>
+      <xs:element name="person" type="tns:person"/>
+      <xs:element name="putPerson" type="tns:putPerson"/>
+      <xs:element name="putPersonResponse" type="tns:putPersonResponse"/>
+      <xs:complexType name="putPerson">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:person"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="person">
+        <xs:sequence>
+          <xs:element name="age" type="xs:int"/>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putPersonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:person"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deletePerson">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deletePersonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:person"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPerson">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getPersonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:person"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PersonException" type="tns:PersonException"/>
+      <xs:complexType name="PersonException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="personid" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="PersonException">
+    <wsdl:part element="tns:PersonException" name="PersonException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePerson">
+    <wsdl:part element="tns:deletePerson" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePersonResponse">
+    <wsdl:part element="tns:deletePersonResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="putPersonResponse">
+    <wsdl:part element="tns:putPersonResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="putPerson">
+    <wsdl:part element="tns:putPerson" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPersonResponse">
+    <wsdl:part element="tns:getPersonResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPerson">
+    <wsdl:part element="tns:getPerson" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PersonService">
+    <wsdl:operation name="putPerson">
+      <wsdl:input message="tns:putPerson" name="putPerson"></wsdl:input>
+      <wsdl:output message="tns:putPersonResponse" name="putPersonResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePerson">
+      <wsdl:input message="tns:deletePerson" name="deletePerson"></wsdl:input>
+      <wsdl:output message="tns:deletePersonResponse" name="deletePersonResponse"></wsdl:output>
+      <wsdl:fault message="tns:PersonException" name="PersonException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPerson">
+      <wsdl:input message="tns:getPerson" name="getPerson"></wsdl:input>
+      <wsdl:output message="tns:getPersonResponse" name="getPersonResponse"></wsdl:output>
+      <wsdl:fault message="tns:PersonException" name="PersonException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PersonServiceSoapBinding" type="tns:PersonService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deletePerson">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deletePerson">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deletePersonResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PersonException">
+        <soap:fault name="PersonException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="putPerson">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="putPerson">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="putPersonResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPerson">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPerson">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPersonResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PersonException">
+        <soap:fault name="PersonException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PersonService">
+    <wsdl:port binding="tns:PersonServiceSoapBinding" name="PersonServicePort">
+      <soap:address location="http://localhost:8989/soap"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8989/soap</con:endpoint></con:endpoints><con:operation id="77a5f4d7-9697-445e-b14b-a206d0bfc3b8" isOneWay="false" action="" name="deletePerson" bindingOperationName="deletePerson" type="Request-Response" outputName="deletePersonResponse" inputName="deletePerson" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="53688878-35c8-4cf5-820b-b23271fc7135" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8989/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.tallercamel.antel.com.uy/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:deletePerson>\r
+         <id>?</id>\r
+      </soap:deletePerson>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.tallercamel.antel.com.uy/PersonService/deletePerson"/></con:call></con:operation><con:operation id="07d6dfdf-40e3-47ac-826d-3c79f816926c" isOneWay="false" action="" name="getPerson" bindingOperationName="getPerson" type="Request-Response" outputName="getPersonResponse" inputName="getPerson" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d13358ca-5942-48ee-a69a-c7d23bcbfb60" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8989/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.tallercamel.antel.com.uy/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:getPerson>\r
+         <id>0</id>\r
+      </soap:getPerson>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.tallercamel.antel.com.uy/PersonService/getPerson"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="3d93db11-7c5b-4273-8ee7-86be2a48e130" isOneWay="false" action="" name="putPerson" bindingOperationName="putPerson" type="Request-Response" outputName="putPersonResponse" inputName="putPerson" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="258c3828-cad0-4726-a6de-4d09772bf6e9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8989/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.tallercamel.antel.com.uy/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:putPerson>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <age>?</age>\r
+            <id>?</id>\r
+            <!--Optional:-->\r
+            <name>?</name>\r
+         </arg0>\r
+      </soap:putPerson>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.tallercamel.antel.com.uy/PersonService/putPerson"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

@@ -6,18 +6,46 @@
     <artifactId>ejemplo-camel-soap</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
     <name>Ejemplo Servicio CXF SOAP</name>	
-    <packaging>pom</packaging>
+    <packaging>bundle</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<camel.version>2.16.2</camel.version>
-	</properties>	
+	</properties>		
 	
-    <modules>
-        <module>servicio-soap</module>
-        <module>ruta-soap</module>		
-        <module>cliente-soap</module>
-    </modules>
-    
+	
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+			<version>${camel.version}</version>			
+        </dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-blueprint</artifactId>
+			<version>${camel.version}</version>
+		</dependency>        
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <version>3.0.1</version>
+                <configuration>
+					<manifestLocation>target/META-INF</manifestLocation>                
+                    <instructions>
+                        <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+                        <Import-Package>*</Import-Package>
+                        <Export-Package>uy.com.antel.tallercamel.soap.*</Export-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint
+        xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+        xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:jaxws="http://cxf.apache.org/jaxws"
+        xmlns:camelcxf="http://camel.apache.org/schema/blueprint/cxf"
+        xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+    <cm:property-placeholder persistent-id="org.apache.servicemix.examples.cxf.receive" update-strategy="reload">
+        <cm:default-properties>
+            <cm:property name="CXFserver" value="http://localhost:8989/"/>
+            <cm:property name="service" value="soap" />
+        </cm:default-properties>
+    </cm:property-placeholder>
+
+
+    <camelcxf:cxfEndpoint id="personService"
+                          address="${CXFserver}${service}"
+                          serviceClass="uy.com.antel.tallercamel.soap.PersonService"
+                          />
+
+    <bean id="serviceHandler" class="uy.com.antel.tallercamel.soap.ServiceHandler" init-method="init" />
+
+    <camelContext id="servicioSOAP" xmlns="http://camel.apache.org/schema/blueprint" >
+    
+        <route id="PersonServiceWSEndpoint">
+            <from uri="cxf:bean:personService" />
+            <recipientList>
+                <simple>direct-vm:${header.operationName}</simple>
+            </recipientList>
+        </route>    
+    
+        <route id="getPerson">
+            <from uri="direct-vm:getPerson" />
+            <log message="getPerson invocation with id: ${body}"/>
+            <bean method="getPerson" ref="serviceHandler"/>
+        </route>
+        <route id="putPerson" trace="true">
+            <from uri="direct-vm:putPerson" />
+            <!-- The message body gets passed as a org.apache.cxf.message.MessageContentsList.
+             We should take the first element of this list to log our person. -->
+            <log message="putPerson invocation with body: ${body[0]}"/>
+            <bean method="putPerson" ref="serviceHandler"/>
+        </route>
+        <route id="deletePerson">
+            <from uri="direct-vm:deletePerson" />
+            <log message="deletePerson invocation with id: ${body}"/>
+            <bean method="deletePerson" ref="serviceHandler"/>
+        </route>
+    </camelContext>
+
+</blueprint>

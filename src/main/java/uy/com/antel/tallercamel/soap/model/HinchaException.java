@@ -21,17 +21,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.ws.WebFault;
 
-@WebFault(name="PersonException")
+@WebFault(name="HinchaException")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class PersonException extends RuntimeException {
-    private final String personid;
-    public PersonException(String message, String personId){
+public class HinchaException extends RuntimeException {
+    private final String hinchaId;
+    public HinchaException(String message, String id){
         super(message);
-        this.personid = personId;
+        this.hinchaId = id;
     }
 
-    public String getPersonid(){
-        return this.personid;
+    public String getHinchaId(){
+        return this.hinchaId;
     }
 
 

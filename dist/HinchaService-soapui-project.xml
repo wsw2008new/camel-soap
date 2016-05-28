@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="17348bd1-e992-4262-9df7-b0a7e17ff85e" activeEnvironment="Default" name="HinchaService" resourceRoot="" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="04338cca-7082-48e0-ac50-c1a98bb6c621" wsaVersion="NONE" name="HinchaServiceSoapBinding" type="wsdl" bindingName="{http://soap.tallercamel.antel.com.uy/}HinchaServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8989/hinchada?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8989/hinchada?wsdl"><con:part><con:url>http://localhost:8989/hinchada?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HinchaService" targetNamespace="http://soap.tallercamel.antel.com.uy/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.tallercamel.antel.com.uy/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://soap.tallercamel.antel.com.uy/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="deleteHincha" type="tns:deleteHincha"/>
+      <xs:element name="deleteHinchaResponse" type="tns:deleteHinchaResponse"/>
+      <xs:element name="getHincha" type="tns:getHincha"/>
+      <xs:element name="getHinchaResponse" type="tns:getHinchaResponse"/>
+      <xs:element name="hincha" type="tns:hincha"/>
+      <xs:element name="putHincha" type="tns:putHincha"/>
+      <xs:element name="putHinchaResponse" type="tns:putHinchaResponse"/>
+      <xs:complexType name="putHincha">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:hincha"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="hincha">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="nombre" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipo" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putHinchaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:hincha"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getHincha">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getHinchaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:hincha"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteHincha">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteHinchaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:hincha"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="HinchaException" type="tns:HinchaException"/>
+      <xs:complexType name="HinchaException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="hinchaId" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="HinchaException">
+    <wsdl:part element="tns:HinchaException" name="HinchaException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHinchaResponse">
+    <wsdl:part element="tns:getHinchaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHincha">
+    <wsdl:part element="tns:getHincha" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteHincha">
+    <wsdl:part element="tns:deleteHincha" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="putHincha">
+    <wsdl:part element="tns:putHincha" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="putHinchaResponse">
+    <wsdl:part element="tns:putHinchaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteHinchaResponse">
+    <wsdl:part element="tns:deleteHinchaResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HinchaService">
+    <wsdl:operation name="putHincha">
+      <wsdl:input message="tns:putHincha" name="putHincha"></wsdl:input>
+      <wsdl:output message="tns:putHinchaResponse" name="putHinchaResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHincha">
+      <wsdl:input message="tns:getHincha" name="getHincha"></wsdl:input>
+      <wsdl:output message="tns:getHinchaResponse" name="getHinchaResponse"></wsdl:output>
+      <wsdl:fault message="tns:HinchaException" name="HinchaException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteHincha">
+      <wsdl:input message="tns:deleteHincha" name="deleteHincha"></wsdl:input>
+      <wsdl:output message="tns:deleteHinchaResponse" name="deleteHinchaResponse"></wsdl:output>
+      <wsdl:fault message="tns:HinchaException" name="HinchaException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HinchaServiceSoapBinding" type="tns:HinchaService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="putHincha">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="putHincha">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="putHinchaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteHincha">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteHincha">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteHinchaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="HinchaException">
+        <soap:fault name="HinchaException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getHincha">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getHincha">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getHinchaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="HinchaException">
+        <soap:fault name="HinchaException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HinchaService">
+    <wsdl:port binding="tns:HinchaServiceSoapBinding" name="HinchaServicePort">
+      <soap:address location="http://localhost:8989/hinchada"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8989/hinchada</con:endpoint></con:endpoints><con:operation id="c730f639-2cb9-4562-bd48-f7b82263b3bb" isOneWay="false" action="" name="deleteHincha" bindingOperationName="deleteHincha" type="Request-Response" outputName="deleteHinchaResponse" inputName="deleteHincha" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c6b992db-63b0-4fe2-95f6-a73d15c1099c" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8989/hinchada</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.tallercamel.antel.com.uy/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:deleteHincha>\r
+         <id>1</id>\r
+      </soap:deleteHincha>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.tallercamel.antel.com.uy/HinchaService/deleteHincha"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="a03170c5-2557-4220-a94a-48bcc83504a6" isOneWay="false" action="" name="getHincha" bindingOperationName="getHincha" type="Request-Response" outputName="getHinchaResponse" inputName="getHincha" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bf987d89-395b-4322-9b9a-a9f5604b1fba" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8989/hinchada</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.tallercamel.antel.com.uy/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:getHincha>\r
+         <id>0</id>\r
+      </soap:getHincha>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.tallercamel.antel.com.uy/HinchaService/getHincha"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="017dffe4-35dc-49b5-bdea-e326e885c0bd" isOneWay="false" action="" name="putHincha" bindingOperationName="putHincha" type="Request-Response" outputName="putHinchaResponse" inputName="putHincha" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="97acaff4-2ea4-4c24-8bf3-4bf84683f6fb" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8989/hinchada</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.tallercamel.antel.com.uy/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:putHincha>\r
+         <arg0>\r
+            <id>1</id>\r
+            <nombre>German</nombre>\r
+            <tipo>Manya</tipo>\r
+         </arg0>\r
+      </soap:putHincha>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.tallercamel.antel.com.uy/HinchaService/putHincha"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

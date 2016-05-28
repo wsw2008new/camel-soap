@@ -17,17 +17,17 @@
 
 package uy.com.antel.tallercamel.soap;
 
-import uy.com.antel.tallercamel.soap.model.Person;
-import uy.com.antel.tallercamel.soap.model.PersonException;
+import uy.com.antel.tallercamel.soap.model.Hincha;
+import uy.com.antel.tallercamel.soap.model.HinchaException;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService(serviceName = "PersonService")
-public interface PersonService {
-    Person getPerson(@WebParam(name="id")int id) throws PersonException;
+@WebService(serviceName = "HinchaService")
+public interface HinchaService {
+    Hincha getHincha(@WebParam(name="id")int id) throws HinchaException;
 
-    Person putPerson(Person person);
+    Hincha putHincha(Hincha hincha);
 
-    Person deletePerson(@WebParam(name="id")int id) throws PersonException;
+    Hincha deleteHincha(@WebParam(name="id")int id) throws HinchaException;
 }

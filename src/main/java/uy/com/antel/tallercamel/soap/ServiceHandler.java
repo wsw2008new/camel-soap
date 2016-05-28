@@ -20,43 +20,43 @@ package uy.com.antel.tallercamel.soap;
 import org.apache.camel.Body;
 import org.apache.camel.Exchange;
 
-import uy.com.antel.tallercamel.soap.model.Person;
-import uy.com.antel.tallercamel.soap.model.PersonException;
+import uy.com.antel.tallercamel.soap.model.Hincha;
+import uy.com.antel.tallercamel.soap.model.HinchaException;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ServiceHandler {
 
-    public static final String ERR_PERSON_X_NOT_FOUND = "Person %s not found";
+    public static final String ERR_HINCHA_X_NOT_FOUND = "Hincha %s no encontrado";
 
-    Map<Integer,Person> persons = new HashMap<Integer,Person>();
+    Map<Integer,Hincha> hinchas = new HashMap<Integer,Hincha>();
 
     public void init(){
-        Person person = new Person(0,"test",100);
-        persons.put(person.getId(), person);
+        Hincha hincha = new Hincha(0,"Gustavo","Tuerto");
+        hinchas.put(hincha.getId(), hincha);
     }
 
-    public void getPerson(@Body String id,Exchange exchange){
-        Person result = persons.get(Integer.parseInt(id));
+    public void getHincha(@Body String id,Exchange exchange){
+        Hincha result = hinchas.get(Integer.parseInt(id));
         checkResult(id, exchange, result);
     }
 
-    public Person putPerson(Person person){
-        persons.put(person.getId(), person);
-        return person;
+    public Hincha putHincha(Hincha hincha){
+        hinchas.put(hincha.getId(), hincha);
+        return hincha;
     }
 
-    public void deletePerson(@Body String id,Exchange exchange){
-        Person result = persons.remove(Integer.parseInt(id));
+    public void deleteHincha(@Body String id,Exchange exchange){
+        Hincha result = hinchas.remove(Integer.parseInt(id));
         checkResult(id, exchange, result);
     }
 
 
-    private void checkResult(String id, Exchange exchange, Person result) {
+    private void checkResult(String id, Exchange exchange, Hincha result) {
         if (result == null){
             exchange.getOut().setFault(true);
-            exchange.getOut().setBody(new PersonException(String.format(ERR_PERSON_X_NOT_FOUND, id), id));
+            exchange.getOut().setBody(new HinchaException(String.format(ERR_HINCHA_X_NOT_FOUND, id), id));
         }else{
             exchange.getOut().setBody(result);
         }

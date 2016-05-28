@@ -8,46 +8,46 @@
         xmlns:camelcxf="http://camel.apache.org/schema/blueprint/cxf"
         xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-    <cm:property-placeholder persistent-id="org.apache.servicemix.examples.cxf.receive" update-strategy="reload">
+    <cm:property-placeholder persistent-id="uy.com.antel.tallercamel.soap" update-strategy="reload">
         <cm:default-properties>
             <cm:property name="CXFserver" value="http://localhost:8989/"/>
-            <cm:property name="service" value="soap" />
+            <cm:property name="service" value="hinchada" />
         </cm:default-properties>
     </cm:property-placeholder>
 
 
-    <camelcxf:cxfEndpoint id="personService"
+    <camelcxf:cxfEndpoint id="hinchaService"
                           address="${CXFserver}${service}"
-                          serviceClass="uy.com.antel.tallercamel.soap.PersonService"
+                          serviceClass="uy.com.antel.tallercamel.soap.HinchaService"
                           />
 
     <bean id="serviceHandler" class="uy.com.antel.tallercamel.soap.ServiceHandler" init-method="init" />
 
     <camelContext id="servicioSOAP" xmlns="http://camel.apache.org/schema/blueprint" >
     
-        <route id="PersonServiceWSEndpoint">
-            <from uri="cxf:bean:personService" />
+        <route id="HinchaServiceWSEndpoint">
+            <from uri="cxf:bean:hinchaService" />
             <recipientList>
                 <simple>direct-vm:${header.operationName}</simple>
             </recipientList>
         </route>    
     
-        <route id="getPerson">
-            <from uri="direct-vm:getPerson" />
-            <log message="getPerson invocation with id: ${body}"/>
-            <bean method="getPerson" ref="serviceHandler"/>
+        <route id="getHincha">
+            <from uri="direct-vm:getHincha" />
+            <log message="ivocacion a getHincha con: ${body}"/>
+            <bean method="getHincha" ref="serviceHandler"/>
         </route>
-        <route id="putPerson" trace="true">
-            <from uri="direct-vm:putPerson" />
-            <!-- The message body gets passed as a org.apache.cxf.message.MessageContentsList.
-             We should take the first element of this list to log our person. -->
-            <log message="putPerson invocation with body: ${body[0]}"/>
-            <bean method="putPerson" ref="serviceHandler"/>
+        <route id="putHincha" trace="true">
+            <from uri="direct-vm:putHincha" />
+            <!-- el body pasa como un org.apache.cxf.message.MessageContentsList.
+             Tomamos el 1er elemento de la lista para loguear. -->
+            <log message="invocacion a putHincha con: ${body[0]}"/>
+            <bean method="putHincha" ref="serviceHandler"/>
         </route>
-        <route id="deletePerson">
-            <from uri="direct-vm:deletePerson" />
-            <log message="deletePerson invocation with id: ${body}"/>
-            <bean method="deletePerson" ref="serviceHandler"/>
+        <route id="deleteHincha">
+            <from uri="direct-vm:deleteHincha" />
+            <log message="invocacion a deleteHincha con: ${body}"/>
+            <bean method="deleteHincha" ref="serviceHandler"/>
         </route>
     </camelContext>
 

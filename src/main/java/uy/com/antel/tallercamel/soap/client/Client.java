@@ -17,8 +17,8 @@
 
 package uy.com.antel.tallercamel.soap.client;
 
-import uy.com.antel.tallercamel.soap.PersonService;
-import uy.com.antel.tallercamel.soap.model.Person;
+import uy.com.antel.tallercamel.soap.HinchaService;
+import uy.com.antel.tallercamel.soap.model.Hincha;
 
 import javax.xml.ws.Service;
 import javax.xml.ws.soap.SOAPBinding;
@@ -31,15 +31,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Client {
-    
-
-
+ 
     public static void main(String[] args) throws MalformedURLException {
         Client client = new Client();
         try {
-            client.postPerson(new Person(1,"John Smith",21));
-            client.getPerson(1);
-            client.deletePerson(1);
+            client.postHincha(new Hincha(1,"Seba","Bolso"));
+            client.getHincha(1);
+            client.deleteHincha(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,60 +45,45 @@ public class Client {
     }
 
 
-
-    private PersonService personService;
-    private static final QName SERVICE_NAME = new QName("http://soap.camel.examples.servicemix.apache.org/", "PersonService");
-    private static final String wsdlLocation = "http://localhost:8989/soap/?wsdl";
+    private HinchaService hinchaService;
+    private static final QName SERVICE_NAME = new QName("http://soap.tallercamel.antel.com.uy/", "HinchaService");
+    private static final String wsdlLocation = "http://localhost:8989/hinchada/?wsdl";
 
     public Client() throws MalformedURLException {
         URL wsdlURL = new URL(wsdlLocation);
         Service service = Service.create(wsdlURL,SERVICE_NAME);
-        personService = service.getPort(PersonService.class);
+        hinchaService = service.getPort(HinchaService.class);
     }
 
-    public void postPerson(Person person) throws Exception{
-        System.out.println("\n### PUT PERSON -> ");
-        printPerson(person);
-
-        Person result = personService.putPerson(person);
-
-        System.out.println("\n### PUT PERSON RESPONSE ");
-        printPerson(result);
+    public void postHincha(Hincha hincha) throws Exception{
+        System.out.println("\n### PUT hincha -> ");
+        printHincha(hincha);
+        Hincha result = hinchaService.putHincha(hincha);
+        System.out.println("\n### PUT hincha RESPONSE ");
+        printHincha(result);
     }
 
-    public void getPerson(int id) throws Exception{
-        System.out.println("\n### GET PERSON WITH ID "+id);
-        Person result = personService.getPerson(id);
-
-        System.out.println("\n### GET PERSON RESPONSE");
-        printPerson(result);
+    public void getHincha(int id) throws Exception{
+        System.out.println("\n### GET hincha WITH ID "+id);
+        Hincha result = hinchaService.getHincha(id);
+        System.out.println("\n### GET hincha RESPONSE");
+        printHincha(result);
     }
 
-    public void deletePerson(int id) throws Exception{
-        System.out.println("\n### DELETE PERSON WITH ID "+id);
-        Person result = personService.deletePerson(id);
-
-        System.out.println("\n### DELETE PERSON RESPONSE");
-        printPerson(result);
+    public void deleteHincha(int id) throws Exception{
+        System.out.println("\n### DELETE hincha WITH ID "+id);
+        Hincha result = hinchaService.deleteHincha(id);
+        System.out.println("\n### DELETE hincha RESPONSE");
+        printHincha(result);
     }
 
 
 
 
-    private void printPerson(Person person){
-
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Person.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // pretty xml output
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(person, System.out);
-        } catch (JAXBException e) {
-            System.err.print(e);
-        }
-
+    private void printHincha(Hincha hincha){
+    	System.out.println("Id: " + hincha.getId());
+    	System.out.println("Nombre: " + hincha.getNombre());
+    	System.out.println("Tipo: " + hincha.getTipo());
     }
 
 }

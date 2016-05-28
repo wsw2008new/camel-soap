@@ -1,29 +1,29 @@
 Ejemplo de Servicio SOAP CXF atendido por Camel sobre ServiceMix 7
 
 
-Las funciones del WS se definen en la interfaz ruta-soap/src/main/java/.../PersonService.java
+Las funciones del WS se definen en la interfaz ruta-soap/src/main/java/.../HinchaService.java
 
 En src/main/resources/OSGI-INF/blueprint/blueprint.xml :
 
 1. Se define el endpoint cxf:
 
-    <camelcxf:cxfEndpoint id="personService"
+    <camelcxf:cxfEndpoint id="hinchaService"
         address="${CXFserver}${service}"
-        serviceClass="uy.com.antel.tallercamel.soap.PersonService"
+        serviceClass="uy.com.antel.tallercamel.soap.HinchanService"
         />
 
-2. Se inicializa la ruta camel PersonServiceRoute que rutea cada llamada a un metodo SOAP hacia
+2. Se inicializa la ruta camel HinchaServiceRoute que rutea cada llamada a un metodo SOAP hacia
 un endpoint distinto:
 
-    <route id="PersonServiceRoute">
-        <from uri="cxf:bean:personService" />
+    <route id="HinchaServiceRoute">
+        <from uri="cxf:bean:hinchaService" />
         <recipientList>
             <simple>direct-vm:${header.operationName}</simple>
         </recipientList>
     </route>
 
 
-3. Se inicializa el bean servicio-soap/src/main/java/.../ServiceHandler.java
+3. Se inicializa el bean src/main/java/.../ServiceHandler.java
 
 4. Se definen varias rutas para soportar los metodos SOAP utilizando el bean ServiceHandler.
 
@@ -44,4 +44,4 @@ En la consola de servicemix:
 	
 Uso
 ---
-http://localhost:8989/soap?wsdl
+http://localhost:8989/hinchada?wsdl

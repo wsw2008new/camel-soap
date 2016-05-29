@@ -16,7 +16,7 @@
     </cm:property-placeholder>
 
 
-    <camelcxf:cxfEndpoint id="hinchaService"
+    <camelcxf:cxfEndpoint id="hinchaSOAPService"
                           address="${CXFserver}${service}"
                           serviceClass="uy.com.antel.tallercamel.soap.HinchaService"
                           />
@@ -26,7 +26,7 @@
     <camelContext id="servicioSOAP" xmlns="http://camel.apache.org/schema/blueprint" >
     
         <route id="HinchaServiceWSEndpoint">
-            <from uri="cxf:bean:hinchaService" />
+            <from uri="cxf:bean:hinchaSOAPService" />
             <recipientList>
                 <simple>direct-vm:${header.operationName}</simple>
             </recipientList>

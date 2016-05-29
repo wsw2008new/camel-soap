@@ -7,16 +7,16 @@ En src/main/resources/OSGI-INF/blueprint/blueprint.xml :
 
 1. Se define el endpoint cxf:
 
-    <camelcxf:cxfEndpoint id="hinchaService"
+    <camelcxf:cxfEndpoint id="hinchaSOAPService"
         address="${CXFserver}${service}"
-        serviceClass="uy.com.antel.tallercamel.soap.HinchanService"
+        serviceClass="uy.com.antel.tallercamel.soap.HinchaService"
         />
 
 2. Se inicializa la ruta camel HinchaServiceRoute que rutea cada llamada a un metodo SOAP hacia
 un endpoint distinto:
 
     <route id="HinchaServiceRoute">
-        <from uri="cxf:bean:hinchaService" />
+        <from uri="cxf:bean:hinchaSOAPService" />
         <recipientList>
             <simple>direct-vm:${header.operationName}</simple>
         </recipientList>
@@ -39,7 +39,7 @@ En el proyecto:
 
 En la consola de servicemix:
 
-	bundle:install -s mvn:uy.com.antel.tallercamel.soap/ejemplo-camel-soap/1.0.0-SNAPSHOT
+	bundle:install -s mvn:uy.com.antel.tallercamel.soap/HinchadaSOAPService/1.0.0-SNAPSHOT
 	
 	
 Uso

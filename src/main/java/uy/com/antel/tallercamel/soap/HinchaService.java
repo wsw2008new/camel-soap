@@ -23,7 +23,7 @@ import uy.com.antel.tallercamel.soap.model.HinchaException;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService(serviceName = "HinchaService")
+@WebService(serviceName = "HinchaSOAPService")
 public interface HinchaService {
     Hincha getHincha(@WebParam(name="id")int id) throws HinchaException;
 

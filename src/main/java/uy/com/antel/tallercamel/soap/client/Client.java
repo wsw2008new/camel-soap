@@ -46,7 +46,7 @@ public class Client {
 
 
     private HinchaService hinchaService;
-    private static final QName SERVICE_NAME = new QName("http://soap.tallercamel.antel.com.uy/", "HinchaService");
+    private static final QName SERVICE_NAME = new QName("http://soap.tallercamel.antel.com.uy/", "HinchaSOAPService");
     private static final String wsdlLocation = "http://localhost:8989/hinchada/?wsdl";
 
     public Client() throws MalformedURLException {
